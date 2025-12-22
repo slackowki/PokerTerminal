@@ -1,6 +1,6 @@
 from deck import deck
 from start import players, start_game, Player
-from hand import deal_hands, hands
+from hand import deal_hands
 from community import burn_card, burn_cards, flop, flop_cards, turn, turn_cards, river, river_cards
 from actions import SmallBlind, BigBlind, Check, Raise, Fold, Call
 from betting import Action, TableAction
