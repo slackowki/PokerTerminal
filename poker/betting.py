@@ -1,17 +1,29 @@
 from start import players
-from actions import SmallBlind, BigBlind, Check, Raise, Fold, Call, table_bet, Win, ClearGame
+from actions import SmallBlind, BigBlind, Check, Raise, Fold, Call, table_bet, Win, ClearGame, CurrentStatus
+from prints import *
 
 def Action(player):
 
     while True:
+
+        CurrentStatus(players)
+
+        print(f"Balance: {BOLD}{GREEN}${player.balance}{RESET}\n")
+        print(f"Current Bet: {BOLD}{YELLOW}${player.current_bet}{RESET}\n")
+        print(f"Table Bet: {BOLD}{RED}${table_bet}{RESET}\n")
+
+        if player.current_bet < table_bet:
+            raise_amount = table_bet - player.current_bet
+            print(f"You need to add {BOLD}{RED}${raise_amount}{RESET} to stay in!\n")
+
         action = int(input(
-                f"\n{player.name}'s turn!"
+                f"\n{BOLD}{GREEN}{player.name}'s{RESET} turn!\n"
                 "\nChoose from the following options:"
-                "\n1 for Check"
-                "\n2 for Raise"
-                "\n3 for Fold"
-                "\n4 for Call"
-                "\nWhat option do you choose? : "
+                f"\n1 for {BOLD}{YELLOW}Check{RESET}"
+                f"\n2 for {BOLD}{GREEN}Raise{RESET}"
+                f"\n3 for {BOLD}{RED}Fold{RESET}"
+                f"\n4 for {BOLD}{BLUE}Call{RESET}"
+                "\n\nWhat option do you choose? : "
             ))
 
         if action == 1:

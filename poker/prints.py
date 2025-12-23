@@ -1,3 +1,11 @@
+RED = '\033[91m'
+GREEN = '\033[92m'
+YELLOW = '\033[93m'
+BLUE = '\033[94m'
+
+BOLD = '\033[1m'
+RESET = '\033[0m'
+
 def display_cards(card1, card2, card3=None, card4=None, card5=None):
 
     cards = [card1, card2, card3, card4, card5]
@@ -7,7 +15,12 @@ def display_cards(card1, card2, card3=None, card4=None, card5=None):
 
     for card in cards:
 
-        suit_icons = {'Clubs': '♣', 'Spades': '♠', 'Diamonds': '♦', 'Hearts': '♥'}
+        suit_icons = {
+            'Clubs': f'{GREEN}♣{RESET}',
+            'Spades': '♠',
+            'Diamonds': f'{RED}♦{RESET}',
+            'Hearts': f'{RED}♥{RESET}'
+        }
         suit_icon = suit_icons[card.suit]
         face_icons = {11: 'J', 12: 'Q', 13: 'K', 14: 'A'}
 

@@ -1,4 +1,6 @@
 from start import players
+from prints import *
+import time
 
 pot = 0
 table_bet = 20
@@ -11,6 +13,8 @@ def SmallBlind(player):
     player.current_bet += amount
     pot += amount
 
+    print(f"{BOLD}{BLUE}{player.name}{RESET}{BOLD} is the small blind!")
+
     return pot, table_bet
 
 def BigBlind(player):
@@ -19,6 +23,29 @@ def BigBlind(player):
     player.balance -= table_bet
     player.current_bet += table_bet
     pot += table_bet
+
+    print(f"{BOLD}{BLUE}{player.name}{RESET}{BOLD} is the big blind!{RESET}\n")
+
+    return pot, table_bet
+
+def CurrentStatus(players):
+    global pot, table_bet
+
+    still_in_hand = []
+
+    for player in players:
+
+        if player.folded == False:
+            still_in_hand.append(player.name)
+
+    still_in_hand_count = len(still_in_hand)
+
+    print(f"There are {BOLD}{RED}{still_in_hand_count}{RESET} players in.\n")
+    time.sleep(1)
+    print(f"The players left are: {', '.join(still_in_hand)}.\n")
+    time.sleep(1)
+    print(f"{BOLD}The pot is up to {RED}${pot}!{RESET}\n")
+    time.sleep(1)
 
 def Check(player):
 
