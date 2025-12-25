@@ -1,6 +1,7 @@
 from deck import deck
-from prints import display_cards
+from prints import *
 import random
+import time
 
 def deal_hands(players):
 
@@ -16,8 +17,18 @@ def deal_hands(players):
 
     for player in players:
         hands[player.name].append(deck.pop())
-        print(f"\n{player.name}'s hand:")
-        display_cards(hands[player.name][0], hands[player.name][1])
+
+        while True:
+
+            reveal_hand = int(input(f"\n{player.name}, enter 1 to see your hand : "))
+
+            if reveal_hand == 1:
+                
+                display_cards(hands[player.name][0], hands[player.name][1])
+                
+                clear_lines(12, 3)
+
+                break
 
     #print(hands)
 

@@ -26,6 +26,9 @@ def BigBlind(player):
 
     print(f"{BOLD}{BLUE}{player.name}{RESET}{BOLD} is the big blind!{RESET}\n")
 
+    time.sleep(1)
+    clear_lines(8, 3)
+
     return pot, table_bet
 
 def CurrentStatus(players):

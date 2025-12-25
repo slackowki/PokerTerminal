@@ -1,6 +1,38 @@
 from start import players
 from actions import SmallBlind, BigBlind, Check, Raise, Fold, Call, table_bet, Win, ClearGame, CurrentStatus
 from prints import *
+import questionary
+from questionary import Style
+
+custom_style = Style([
+    ('question', 'bold'),
+    ('highlighted', 'fg:green bold'),
+    ('pointer', 'fg:green bold'),
+])
+
+def get_player_action(player):
+
+    options = ["Check", "Raise", "Fold", "Call"]
+
+    question = f"""
+
+Player Turn: {player.name}
+Balance: ${player.balance}
+Your Bet: ${player.current_bet}
+Table Bet: ${table_bet}
+
+Choose your action:"""
+    
+    option = questionary.select(
+        question,
+        choices=options,
+        style=custom_style,
+        pointer="►"
+    ).ask()
+
+    index = options.index(option)
+    return index + 1
+
 
 def Action(player):
 
@@ -16,15 +48,7 @@ def Action(player):
             raise_amount = table_bet - player.current_bet
             print(f"You need to add {BOLD}{RED}${raise_amount}{RESET} to stay in!\n")
 
-        action = int(input(
-                f"\n{BOLD}{GREEN}{player.name}'s{RESET} turn!\n"
-                "\nChoose from the following options:"
-                f"\n1 for {BOLD}{YELLOW}Check{RESET}"
-                f"\n2 for {BOLD}{GREEN}Raise{RESET}"
-                f"\n3 for {BOLD}{RED}Fold{RESET}"
-                f"\n4 for {BOLD}{BLUE}Call{RESET}"
-                "\n\nWhat option do you choose? : "
-            ))
+        action = get_player_action(player)
 
         if action == 1:
 

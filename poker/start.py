@@ -1,4 +1,6 @@
 from dataclasses import dataclass
+from prints import *
+import time
 
 @dataclass
 class Player:
@@ -21,12 +23,16 @@ def start_game():
         if player_count < 3:
             print("Not enough players! Need at least 3.")
 
+    clear_lines(4, 2)
+
     # Names
     for i in range(1, ((player_count)+1)):
 
         name = input(f"What's player {i}'s name? : ")
         position = i
         balance = int(input(f"What's player {i}'s balance? : "))
+
+        clear_lines(5,2)
 
         new_player = Player(name, position, balance)
         players.append(new_player)

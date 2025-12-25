@@ -1,3 +1,5 @@
+import time
+
 RED = '\033[91m'
 GREEN = '\033[92m'
 YELLOW = '\033[93m'
@@ -5,6 +7,21 @@ BLUE = '\033[94m'
 
 BOLD = '\033[1m'
 RESET = '\033[0m'
+
+def clear_lines(lines_to_clear, time_to_clear):
+
+    print(f"{RED}{BOLD}Clearing terminal in {time_to_clear} seconds!{RESET}")
+
+    i = time_to_clear
+
+    while 0 < i:
+        time.sleep(0.5)
+        print(f"{RED}{BOLD}{i}{RESET}")
+        time.sleep(0.5)
+        i -= 1
+
+    for _ in range(lines_to_clear):
+        print("\033[A\033[K", end="")
 
 def display_cards(card1, card2, card3=None, card4=None, card5=None):
 
