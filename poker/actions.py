@@ -5,6 +5,11 @@ import time
 pot = 0
 table_bet = 20
 
+def GetTableStats():
+    global pot, table_bet
+
+    return pot, table_bet
+
 def SmallBlind(player):
     global pot, table_bet
 
@@ -30,6 +35,9 @@ def BigBlind(player):
     clear_lines(8, 3)
 
     return pot, table_bet
+
+def GetActivePlayers(players):
+    return [player for player in players if not player.folded]
 
 def CurrentStatus(players):
     global pot, table_bet

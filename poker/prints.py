@@ -15,9 +15,7 @@ def clear_lines(lines_to_clear, time_to_clear):
     i = time_to_clear
 
     while 0 < i:
-        time.sleep(0.5)
-        print(f"{RED}{BOLD}{i}{RESET}")
-        time.sleep(0.5)
+        time.sleep(1)
         i -= 1
 
     for _ in range(lines_to_clear):

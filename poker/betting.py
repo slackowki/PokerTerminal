@@ -1,5 +1,5 @@
 from start import players
-from actions import SmallBlind, BigBlind, Check, Raise, Fold, Call, table_bet, Win, ClearGame, CurrentStatus
+from actions import SmallBlind, BigBlind, Check, Raise, Fold, Call, Win, ClearGame, CurrentStatus, GetTableStats
 from prints import *
 import questionary
 from questionary import Style
@@ -11,6 +11,8 @@ custom_style = Style([
 ])
 
 def get_player_action(player):
+
+    table_bet = GetTableStats()[1]
 
     options = ["Check", "Raise", "Fold", "Call"]
 
@@ -35,6 +37,8 @@ Choose your action:"""
 
 
 def Action(player):
+
+    table_bet = GetTableStats()[1]
 
     while True:
 
@@ -88,10 +92,16 @@ def Action(player):
                 # Later, add side-pots logic here.
                 continue
 
-def TableAction(players):
+def TableAction(players, round):
 
     sorted_players = sorted(players, key=lambda p: p.position)
-    action_order = sorted_players[1:] + sorted_players[:1]
+    # For pre-flop, betting starts on the person after big blind.
+    if round == 0:
+        start_index = 3 % len(sorted_players)
+    else:
+        start_index = 1
+
+    action_order = sorted_players[start_index:] + sorted_players[:start_index]
 
     while True:
 
@@ -101,6 +111,7 @@ def TableAction(players):
                 continue
 
             Action(player)
+            clear_lines(25, 3)
 
         active_players = [p for p in players if not p.folded]
 

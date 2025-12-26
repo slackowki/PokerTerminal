@@ -32,4 +32,3 @@ def river():
     burn_card()
     river_cards.append(deck.pop())
     display_cards(flop_cards[0], flop_cards[1], flop_cards[2], turn_cards[0], river_cards[0])
-

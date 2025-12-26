@@ -3,9 +3,9 @@ from prints import *
 import random
 import time
 
-def deal_hands(players):
+hands = {}
 
-    hands = {}
+def deal_hands(players):
 
     random.shuffle(deck)
 

@@ -8,6 +8,9 @@ import time
 
 def new_game():
 
+    # Rounds include pre-flop (0), flop (1), turn (2), and river (3).
+    round = 0
+
     players = start_game()
 
     for player in players:
@@ -22,21 +25,21 @@ def new_game():
     time.sleep(1)
     hands = deal_hands(players)
 
-    TableAction(players)
+    TableAction(players, round=0)
 
     flop()
     print(flop_cards)
 
-    TableAction(players)
+    TableAction(players, round=1)
 
     turn()
     print(turn_cards)
 
-    TableAction(players)
+    TableAction(players, round=2)
 
     river()
     print(river_cards)
 
-    TableAction(players)
+    TableAction(players, round=3)
 
 new_game()
