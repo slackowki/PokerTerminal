@@ -3,6 +3,7 @@ from actions import SmallBlind, BigBlind, Check, Raise, Fold, Call, Win, ClearGa
 from prints import *
 import questionary
 from questionary import Style
+from hand import hands
 
 custom_style = Style([
     ('question', 'bold'),
@@ -14,7 +15,7 @@ def get_player_action(player):
 
     table_bet = GetTableStats()[1]
 
-    options = ["Check", "Raise", "Fold", "Call"]
+    options = ["Check", "Raise", "Fold", "Call", "See Hand"]
 
     question = f"""
 
@@ -91,6 +92,19 @@ def Action(player):
                 print(f"You do not have the funds to call!")
                 # Later, add side-pots logic here.
                 continue
+
+        elif action == 5:
+
+            print(f"Showing hand in 2 seconds!")
+            time.sleep(2)
+
+            card1 = hands[player.name][0]
+            card2 = hands[player.name][1]
+
+            display_cards(card1, card2)
+            clear_lines(10, 5)
+            
+            continue
 
 def TableAction(players, round):
 

@@ -1,3 +1,4 @@
+from hand import hands
 from start import players
 from prints import *
 import time
@@ -75,9 +76,17 @@ def Raise(player, amount):
     
 
 def Fold(player):
+    global pot, table_bet
 
-    player.folded = True
-    player.current_bet = 0
+    if table_bet > player.current_bet:
+
+        player.folded = True
+        player.current_bet = 0
+        return
+
+    else:
+        print(f"Your current bet of {player.current_bet} is equal to the table bet, you cannot fold!")
+
 
 
 def Call(player):
@@ -111,3 +120,13 @@ def ClearGame(players):
 
         if player.position > len(players):
             player.position = 1
+
+def RevealHands(players):
+
+    for player in players:
+
+        card1 = hands[player.name][0]
+        card2 = hands[player.name][1]
+
+        print(f"{BOLD}{player.name}'s hand!")
+        display_cards(card1, card2)
